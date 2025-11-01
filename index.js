@@ -16,7 +16,7 @@ import {
   InteractionType,
 } from 'discord.js';
 
-const BOT_TOKEN = process.env.TOKEN;
+const token = process.env.DISCORD_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 const TEST_GUILD_ID = process.env.GUILD_ID || null; // guild test, để null nếu global
 
@@ -226,3 +226,4 @@ client.on('interactionCreate', async (interaction) => {
   await registerCommands();
   await client.login(BOT_TOKEN);
 })();
+
