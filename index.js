@@ -16,12 +16,14 @@ import {
   InteractionType,
 } from 'discord.js';
 
-const token = process.env.DISCORD_TOKEN;
+// ĐÃ SỬA LỖI: Đổi tên biến cục bộ từ 'token' thành 'BOT_TOKEN'
+const BOT_TOKEN = process.env.DISCORD_TOKEN; // Lấy Token từ biến môi trường DISCORD_TOKEN
 const CLIENT_ID = process.env.CLIENT_ID;
 const TEST_GUILD_ID = process.env.GUILD_ID || null; // guild test, để null nếu global
 
+// Dòng 23 đã được sửa nhờ sự thay đổi trên
 if (!BOT_TOKEN || !CLIENT_ID) {
-  console.error('Vui lòng set TOKEN và CLIENT_ID trong .env');
+  console.error('Vui lòng set DISCORD_TOKEN và CLIENT_ID trong Environment Variables của Render.');
   process.exit(1);
 }
 
@@ -50,6 +52,7 @@ async function registerCommands() {
       .toJSON(),
   ];
 
+  // Sử dụng BOT_TOKEN đã được định nghĩa
   const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
 
   try {
@@ -224,6 +227,6 @@ client.on('interactionCreate', async (interaction) => {
 // --- register command + login ---
 (async () => {
   await registerCommands();
-  await client.login(BOT_TOKEN);
+  // Sử dụng BOT_TOKEN đã được định nghĩa
+  await client.login(BOT_TOKEN); 
 })();
-
